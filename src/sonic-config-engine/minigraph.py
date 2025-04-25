@@ -2241,7 +2241,7 @@ def parse_xml(filename, platform=None, port_config_file=None, asic_name=None, hw
     # #voq switch_id for asic
     # switch_id = chassis_metadata.get(asic_hostname, {}).get('asic_switch_id', None)
     # on Voq system each asic has a switch_id
-    if switch_id is not None:
+    if switch_id is not None and chassis_type == CHASSIS_CARD_VOQ:
         if sub_role is not None and  FRONTEND_ASIC_SUB_ROLE == sub_role:
             if slot_index is not None:
                 switch_id = get_asic_switch_id(slot_index, asic_name)
