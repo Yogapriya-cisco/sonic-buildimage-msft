@@ -378,8 +378,7 @@
         "SWITCH_TRIMMING": {
             "GLOBAL": {
                 "size": "128",
-                "dscp_value": "from-tc",
-                "tc_value": "6",
+                "dscp_value": "48",
                 "queue_index": "6"
             }
         },

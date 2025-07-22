@@ -358,11 +358,11 @@ class DpuModule(ModuleBase):
             bool: True if the request has been issued successfully, False if not
         """
         if up:
-            if self.dpuctl_obj.dpu_power_on(skip_pre_post=True):
+            if self.dpuctl_obj.dpu_power_on():
                 return True
             logger.log_error(f"Failed to set the admin state for {self._name}")
             return False
-        return self.dpuctl_obj.dpu_power_off(skip_pre_post=True)
+        return self.dpuctl_obj.dpu_power_off()
 
     def get_type(self):
         """
@@ -483,13 +483,14 @@ class DpuModule(ModuleBase):
         Retrieves the bus information.
 
         Returns:
-            Returns the PCI bus information in list of BDF format
+            Returns the PCI bus information in BDF format like "[DDDD:]BB:SS:F"
         """
-        if self.bus_info:
-            return self.bus_info
-        bus_paths = self.dpuctl_obj.get_pci_dev_path()
-        # Convert full paths to BDF format
-        self.bus_info = [path.split('/')[-1] for path in bus_paths]
+        if not self.bus_info:
+            # Cache the data to prevent multiple platform.json parsing
+            self.bus_info = DeviceDataManager.get_dpu_interface(self.get_name().lower(), DpuInterfaceEnum.PCIE_INT.value)
+            # If we are unable to parse platform.json for midplane interface raise RunTimeError
+            if not self.bus_info:
+                raise RuntimeError(f"Unable to obtain bus info from platform.json for {self.get_name()}")
         return self.bus_info
 
     def pci_detach(self):

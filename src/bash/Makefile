@@ -3,7 +3,6 @@ SHELL = /bin/bash
 .SHELLFLAGS += -e
 
 MAIN_TARGET = bash_$(BASH_VERSION_FULL)_$(CONFIGURED_ARCH).deb
-DERIVED_TARGETS = $(BASH_DBG)
 
 $(addprefix $(DEST)/, $(MAIN_TARGET)): $(DEST)/% :
 	# Quilt store applied patches info in .pc folder, if this folder not clean, quilt can't apply patches correctly.
@@ -37,6 +36,4 @@ else
 endif
 	popd
 
-	mv $(DERIVED_TARGETS) $* $(DEST)/
-
-$(addprefix $(DEST)/, $(DERIVED_TARGETS)): $(DEST)/% : $(DEST)/$(MAIN_TARGET)
+	mv $* $(DEST)/

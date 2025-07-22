@@ -3,7 +3,6 @@ SHELL = /bin/bash
 .SHELLFLAGS += -e
 
 MAIN_TARGET = $(PSAMPLE)
-DERIVED_TARGETS = $(PSAMPLE_DBG)
 
 $(addprefix $(DEST)/, $(MAIN_TARGET)): $(DEST)/% :
 
@@ -21,6 +20,5 @@ else
 endif
 	popd
 
-	mv $(DERIVED_TARGETS) $* $(DEST)/
+	mv $* $(DEST)/
 
-$(addprefix $(DEST)/, $(DERIVED_TARGETS)): $(DEST)/% : $(DEST)/$(MAIN_TARGET)

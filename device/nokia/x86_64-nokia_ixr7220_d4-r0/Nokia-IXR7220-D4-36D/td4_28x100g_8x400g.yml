@@ -24,6 +24,7 @@
 device:
     0:
         DEVICE_CONFIG:
+            VARIANT: DNA_6_5_31_7_0
             # CORE CLOCK FREQUENCY
             CORE_CLK_FREQ: CLK_1350MHZ
             # PP CLOCK FREQUENCY
@@ -507,20 +508,6 @@ device:
             THRESHOLD_MODE: LOSSY_AND_LOSSLESS
 ...
 ---
-device:
-    0:
-        TM_ING_PORT_PRI_GRP:
-            ?
-                PORT_ID: [[8, 15], 1, 5, 6, 7, 16, 17, 20, 24,
-                          [28, 35],
-                          [60, 63],
-                          40, 44, 48, 52, 56, 64, 68, 72]
-                TM_PRI_GRP_ID: [3,4]
-            :
-                PFC: 1
-                LOSSLESS: 1
-...
----
 bcm_device:
     0:
         global:
@@ -550,8 +537,6 @@ bcm_device:
             sai_fast_convergence_support: 1
             sai_modify_hash_flexdigest: 1
             sai_port_phy_time_sync_en: 1
-            egress_pkt_pri_remark_mode: 1
-            sai_mdio_access_clause45: 1
 ...
 ---
 device:

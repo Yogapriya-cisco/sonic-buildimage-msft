@@ -3,7 +3,6 @@ SHELL = /bin/bash
 .SHELLFLAGS += -e
 
 MAIN_TARGET = libnss-radius_$(NSS_RADIUS_VERSION)_$(CONFIGURED_ARCH).deb
-DERIVED_TARGETS = libnss-radius-dbgsym_$(NSS_RADIUS_VERSION)_$(CONFIGURED_ARCH).deb
 
 $(addprefix $(DEST)/, $(MAIN_TARGET)): $(DEST)/% :
 	pushd ./libnss-radius
