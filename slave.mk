@@ -237,6 +237,10 @@ ifneq ($(SONIC_INCLUDE_ROUTER_ADVERTISER),)
 override INCLUDE_ROUTER_ADVERTISER = $(SONIC_INCLUDE_ROUTER_ADVERTISER)
 endif
 
+ifeq ($(SONIC_INCLUDE_STP),y)
+INCLUDE_STP = y
+endif
+
 ifeq ($(ENABLE_AUTO_TECH_SUPPORT),y)
 ENABLE_AUTO_TECH_SUPPORT = y
 endif
@@ -1448,6 +1452,7 @@ $(addprefix $(TARGET_PATH)/, $(SONIC_INSTALLERS)) : $(TARGET_PATH)/% : \
 	export enable_auto_tech_support="$(ENABLE_AUTO_TECH_SUPPORT)"
 	export enable_asan="$(ENABLE_ASAN)"
 	export include_macsec="$(INCLUDE_MACSEC)"
+	export include_stp="$(INCLUDE_STP)"
 	export include_dhcp_server="$(INCLUDE_DHCP_SERVER)"
 	export include_mgmt_framework="$(INCLUDE_MGMT_FRAMEWORK)"
 	export include_iccpd="$(INCLUDE_ICCPD)"
